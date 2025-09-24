@@ -1,0 +1,56 @@
+version: 2
+
+sources:
+  - name: dev_bronze                         # dbt source name
+    database: logistics               # Snowflake database
+    schema: dev_bronze                       # schema where bronze lives
+    tables:
+      - name: bronze_dim_customer
+      - name: bronze_dim_store
+      - name: bronze_dim_product
+      - name: bronze_dim_date
+      - name: bronze_fact_sales
+      - name: bronze_fact_returns
+
+
+{# WITH customers as (
+    SELECT * FROM {{ source('dev_bronze','bronze_dim_customer') }}
+    {# SELECT * FROM {{ ref("bronze_dim_customer") }} #}
+)
+SELECT * FROM customers #}
+
+WITH customers AS (
+    SELECT * FROM {{ ref("bronze_dim_customer") }}
+),
+deduplicate_customers AS (
+    SELECT
+        customer_sk as customer_id,
+        customer_code,
+        first_name,
+        last_name,
+        gender,
+        email,
+        phone,
+        loyalty_tier,
+        signup_date,
+        ROW_NUMBER() OVER(PARTITION BY customer_sk ORDER BY signup_date DESC) AS row_count
+    FROM customers
+)
+SELECT * FROM deduplicate_customers WHERE row_count = 1
+
+-- Check for duplicate customer_id
+
+SELECT
+    customer_sk AS customer_id,
+    COUNT(*) AS duplicate_customer_id
+FROM
+    {{ ref("bronze_dim_customer") }}
+GROUP BY 
+    customer_sk
+HAVING 
+    COUNT(*) > 1
+ORDER BY 
+    duplicate_customer_id;
+
+
+

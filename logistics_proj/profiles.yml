@@ -1,0 +1,35 @@
+ecommerce_analytics:
+  outputs:
+    dev:
+      catalog: sample_project
+      host: dbc-c82f964b-c782.cloud.databricks.com
+      http_path: /sql/1.0/warehouses/ce1a556eddaec843
+      schema: default
+      threads: 1
+      token: dapi1e4df8e3e507f254cda5a5a7646c05e5
+      type: databricks
+  target: dev
+lex_dbt:
+  outputs:
+    dev:
+      catalog: dbt_tutorial_dev
+      host: dbc-c82f964b-c782.cloud.databricks.com
+      http_path: /sql/1.0/warehouses/ce1a556eddaec843
+      schema: default
+      threads: 1
+      token: dapi430119dad4610202ef282603c92f3c60
+      type: databricks
+  target: dev
+logistics_proj:
+  outputs:
+    dev:
+      account: UMZJBYC-SL87709
+      database: LOGISTICS
+      password: dbtpassabc
+      role: TRANSFORM
+      schema: DEV
+      threads: 1
+      type: snowflake
+      user: dbt
+      warehouse: COMPUTE_WH
+  target: dev
