@@ -1,13 +1,13 @@
 version: 2
 
 sources:
-  - name: dev_bronze                         # dbt source name
-    database: logistics               # Snowflake database
-    schema: dev_bronze                       # schema where bronze lives
+  - name: dev_silver
+    database: logistics
+    schema: dev_silver
     tables:
-      - name: bronze_dim_customer
-      - name: bronze_dim_store
-      - name: bronze_dim_product
-      - name: bronze_dim_date
-      - name: bronze_fact_sales
-      - name: bronze_fact_returns
+      - name: silver_customers
+      - name: silver_drivers
+      - name: silver_locations
+      - name: silver_trips
+      - name: silver_payments
+      - name: silver_vehicles

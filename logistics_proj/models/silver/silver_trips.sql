@@ -34,7 +34,18 @@ WITH cleaned_trips_data as (
 {# Track the new updates #}
 trip_updates AS (
     SELECT
-        *
+        previous_trip.trip_id,
+        previous_trip.driver_id,
+        previous_trip.customer_id,
+        previous_trip.vehicle_id,
+        previous_trip.trip_start_time,
+        previous_trip.trip_end_time,
+        previous_trip.start_location,
+        previous_trip.end_location,
+        previous_trip.distance_km,
+        previous_trip.fare_amount,
+        previous_trip.trip_status,
+        previous_trip.last_updated_timestamp
     FROM 
         cleaned_trips_data AS previous_trip
         {% if is_incremental() %}

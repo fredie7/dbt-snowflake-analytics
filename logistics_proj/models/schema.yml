@@ -1,0 +1,28 @@
+models:
+  - name: silver_customers
+    description: Refined table for customers
+    columns:
+      - name: customer_id
+        description: Primary key of the customers
+        tests:
+          - unique
+          - not_null
+      - name: customer_name
+        description: Fullname of the customers
+        tests:
+          - not_null
+      - name: email
+        description: email of the customers
+          - not_null    
+      - name: phone_number
+          - not_null    
+        description: phone number of customers
+      - name: city
+          - not_null    
+        description: city of customers
+      - name: signup_date
+          - not_null    
+        description: Signup date of customers
+      - name: last_update_timestamp
+          - not_null    
+        description: last updated timestamp of customers
