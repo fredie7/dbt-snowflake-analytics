@@ -68,5 +68,42 @@ SUM(CASE WHEN supplier_sk IS NULL THEN 1 ELSE 0 END) AS supplier_sk_id,
 SUM(CASE WHEN list_price IS NULL THEN 1 ELSE 0 END) AS list_price_null 
 FROM products
 
+RECENCY
+======
+{# FInd the timeframe of the last trip/order for each customer #}
+
+WITH last_trip AS (
+    SELECT
+        customer_id,
+        MAX(trip_start_time)::DATE AS last_trip_date
+        FROM 
+            {{ source("dev_gold","gold_fact_trips") }}
+        GROUP BY
+            customer_id
+)
+SELECT
+    customer_id,
+    last_trip_date,
+    DATEDIFF("day", last_trip_date, CURRENT_DATE()) AS days_since_last_trip,
+    CASE
+        WHEN DATEDIFF("day", last_trip_date, CURRENT_DATE()) <=10
+            THEN '0 - 10 days'
+        WHEN DATEDIFF("day", last_trip_date, CURRENT_DATE()) > 10
+        AND DATEDIFF("day", last_trip_date, CURRENT_DATE()) <= 20
+            THEN '11 - 20 days'
+        WHEN DATEDIFF("day", last_trip_date, CURRENT_DATE()) > 20
+        AND DATEDIFF("day", last_trip_date, CURRENT_DATE()) <= 30
+            THEN '21 - 30 days'
+        ELSE
+            'Over 30 days'
+        END AS recency
+FROM
+    last_trip
+
+ORDER OF SQL STATEMENTS
+=======================
+SELECT → FROM → WHERE → GROUP BY → HAVING → ORDER BY
+
+
 
 

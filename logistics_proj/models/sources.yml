@@ -11,3 +11,13 @@ sources:
       - name: silver_trips
       - name: silver_payments
       - name: silver_vehicles
+  - name: dev_gold
+    database: logistics
+    schema: dev_gold
+    tables:
+      - name: gold_dim_customers
+      - name: gold_dim_drivers
+      - name: gold_dim_locations
+      - name: gold_fact_trips
+      - name: gold_fact_payments
+      - name: gold_dim_vehicles
