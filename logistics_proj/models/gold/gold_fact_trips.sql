@@ -19,4 +19,5 @@ SELECT
     trip_end_time,
     distance_in_km,
     fare_amount
-FROM fact_trips
+FROM 
+    fact_trips
