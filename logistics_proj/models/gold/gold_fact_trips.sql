@@ -8,7 +8,6 @@ WITH fact_trips AS (
         trip_end_time,
         distance_in_km,
         fare_amount,
-        trip_status
     FROM {{ source("dev_silver", "silver_trips")}}
 )
 SELECT
@@ -19,6 +18,5 @@ SELECT
     trip_start_time,
     trip_end_time,
     distance_in_km,
-    fare_amount,
-    trip_status
+    fare_amount
 FROM fact_trips

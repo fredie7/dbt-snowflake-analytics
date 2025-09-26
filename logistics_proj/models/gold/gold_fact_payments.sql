@@ -3,10 +3,12 @@ WITH fact_trips AS (
         payment_id,
         trip_id,
         customer_id,
-        amount,
-        payment_method,
+        amount
     FROM {{ source("dev_silver", "silver_payments")}}
 )
 SELECT
-    *
+    payment_id,
+    trip_id,
+    customer_id,
+    amount
 FROM fact_trips

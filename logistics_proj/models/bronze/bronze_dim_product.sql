@@ -1,4 +1,0 @@
-WITH raw_product AS (
-    SELECT * FROM LOGISTICS.RAW.DIM_PRODUCT
-)
-SELECT * FROM raw_product

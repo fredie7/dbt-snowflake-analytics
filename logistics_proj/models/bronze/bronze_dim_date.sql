@@ -1,4 +1,0 @@
-WITH raw_date AS (
-    SELECT * FROM LOGISTICS.RAW.DIM_DATE
-)
-SELECT * FROM raw_date
