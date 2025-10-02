@@ -14,7 +14,7 @@ WITH raw_customers AS (
     FROM {{ ref('bronze_customers') }}
 ),
 
--- Find duplicates
+{# Find duplicates #}
 duplicate_customers AS (
     SELECT 
         customer_id,
@@ -24,7 +24,7 @@ duplicate_customers AS (
     HAVING COUNT(*) > 1
 ),
 
--- Remove duplicates and NULLs
+{# Remove duplicates and NULLs #}
 unique_customers AS (
     SELECT
         customer_id,
@@ -46,7 +46,7 @@ unique_customers AS (
       AND signup_date IS NOT NULL
       AND last_updated_timestamp IS NOT NULL
 )
-
+{# Reconcile Changes #}
 SELECT
     {{ dbt_utils.generate_surrogate_key(['customer_id', 'email', 'phone_number', 'city']) }} AS customer_key,
     customer_id,
