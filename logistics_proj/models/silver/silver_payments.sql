@@ -17,7 +17,14 @@ duplicate_payments AS (
 {# Remove duplicate payments and NULL values#}
 unique_payments AS (
     SELECT
-        *
+        payment_id,
+        trip_id,
+        customer_id,
+        payment_method,
+        payment_status,
+        amount,
+        transaction_time,
+        last_updated_timestamp
     FROM
         payments
     WHERE

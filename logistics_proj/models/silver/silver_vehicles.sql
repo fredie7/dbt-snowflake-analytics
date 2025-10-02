@@ -17,7 +17,12 @@ duplicate_vehicles AS (
 {# Remove duplicate vehicles and NULL values#}
 unique_vehicles AS (
     SELECT
-        *
+        vehicle_id,
+        license_plate,
+        make,
+        year,
+        vehicle_type,
+        last_updated_timestamp
     FROM
         vehicles
     WHERE

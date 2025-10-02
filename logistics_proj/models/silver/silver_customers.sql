@@ -14,7 +14,14 @@ duplicate_customers AS (
 {# Remove duplicate customers and NULL values#}
 unique_customers AS (
     SELECT
-        *
+        customer_id,
+        first_name,
+        last_name,
+        email,
+        phone_number,
+        city,
+        signup_date,
+        last_updated_timestamp
     FROM 
         customers
     WHERE

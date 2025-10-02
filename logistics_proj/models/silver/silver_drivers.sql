@@ -17,7 +17,14 @@ duplicate_drivers AS (
 {# Remove duplicate drivers as well as NULL values#}
 unique_drivers AS (
     SELECT 
-        *
+        driver_id,
+        first_name,
+        last_name,
+        phone_number,
+        vehicle_id,
+        driver_rating,
+        city,
+        last_updated_timestamp
     FROM 
         drivers
     WHERE

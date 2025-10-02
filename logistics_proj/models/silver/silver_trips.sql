@@ -5,6 +5,7 @@
 ) }}
 
 {# Start with data cleaning #}
+{# === Remove duplicates and null values ===#}
 WITH cleaned_trips_data as (
     SELECT
         *
@@ -50,7 +51,7 @@ trip_updates AS (
         cleaned_trips_data AS previous_trip
         {% if is_incremental() %}
     LEFT JOIN
-        {{ this }} current_trip
+        {{ this }} AS current_trip
     ON
         previous_trip.trip_id = current_trip.trip_id
     AND

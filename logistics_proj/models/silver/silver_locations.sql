@@ -17,7 +17,13 @@ duplicate_locations AS (
 {# Remove duplicate locations and NULL values#}
 unique_locations AS (
     SELECT
-        *
+        location_id,
+        city,
+        state,
+        country,
+        latitude,
+        longitude,
+        last_updated_timestamp
     FROM
         locations
     WHERE
