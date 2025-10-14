@@ -1,4 +1,4 @@
-### Logistics Big Data Analytics Featuring Snowflake & DBT.
+## Logistics Big Data Analytics Project Featuring Snowflake & DBT.
 
 This project implements a structured, multi-layered analytics pipeline following the Medallion Architecture, with secure data persistence in Snowflake and data transformation and testing using DBT.
 
