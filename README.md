@@ -6,6 +6,6 @@ The pipeline begins with the collection of raw business data, including customer
 
 Next, the data moves to the Silver layer, where it undergoes cleaning, transformation, and standardization. This process follows best practices for scalability, query performance, and readability, preparing the data for analytics.
 
-For entities such as customers, the pipeline implements slowly changing dimensions (SCDs) using snapshots to track historical changes while allowing new customers to be added.
+For entities such as customers, the pipeline implements ##slowly changing dimensions## using snapshots to track historical changes while allowing new customers to be added.
 
 The sources.yml file defines the structure and metadata of the remote Snowflake tables used by DBT, while the schema.yml file contains data quality tests and constraints to ensure the reliability and integrity of the transformed data.
