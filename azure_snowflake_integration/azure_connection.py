@@ -3,7 +3,7 @@ CREATE STORAGE INTEGRATION azure_integration
 TYPE = EXTERNAL_STAGE
 STORAGE_PROVIDER = AZURE
 ENABLED = TRUE
-AZURE_TENANT_ID = '4f76d3ed-73a3-4ae8-9e8f-8d39080d6434'
+AZURE_TENANT_ID = '23********************************'
 STORAGE_ALLOWED_LOCATIONS = ('azure://snowstorage11.blob.core.windows.net/raw');
 
 -- Confirm integration and the retrned details
