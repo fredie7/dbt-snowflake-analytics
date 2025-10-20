@@ -15,7 +15,7 @@ SELECT
     COUNT(DISTINCT t.customer_id) AS active_customers
 FROM
     {{ source("dev_gold", "gold_fact_trips") }} t
-JOIN
+LEFT JOIN
     customer_first_trip cft
     ON t.customer_id = cft.customer_id
 GROUP BY
