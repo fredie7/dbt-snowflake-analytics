@@ -10,15 +10,15 @@ STORAGE_ALLOWED_LOCATIONS = ('azure://snowstorage11.blob.core.windows.net/raw');
 DESC INTEGRATION azure_integration;
 
 -- Create the database
-CREATE DATABASE IF NOT EXISTS logistics_db;
+CREATE DATABASE IF NOT EXISTS logistics;
 
 -- Create the schema
---CREATE SCHEMA IF NOT EXISTS logistics_db.azure_integration;
+--CREATE SCHEMA IF NOT EXISTS logistics.azure_integration;
 
-CREATE SCHEMA IF NOT EXISTS logistics_db.raw;
+CREATE SCHEMA IF NOT EXISTS logistics.raw;
 
 --Create file format
-CREATE OR REPLACE FILE FORMAT logistics_db.raw.csv_file_format
+CREATE OR REPLACE FILE FORMAT logistics.raw.csv_file_format
 TYPE = CSV
 FIELD_DELIMITER = ','
 SKIP_HEADER = 1
@@ -27,18 +27,18 @@ EMPTY_FIELD_AS_NULL = TRUE;
 -- Create an external stage in snowflake to access the blob storage on azure
 -- Use file format and integration to create stage object
 
-CREATE OR REPLACE STAGE logistics_db.raw.logistics_container_stage
+CREATE OR REPLACE STAGE logistics.raw.logistics_container_stage
 URL = 'azure://snowstorage11.blob.core.windows.net/raw'
 STORAGE_INTEGRATION = azure_integration
-FILE_FORMAT = logistics_db.raw.csv_file_format;
+FILE_FORMAT = logistics.raw.csv_file_format;
 
 -- List files in the staging area
-LIST @logistics_db.raw.logistics_container_stage;
+LIST @logistics.raw.logistics_container_stage;
 
 -- Load data into snowflake tables
 
 -- Create customers table
-CREATE OR REPLACE TABLE logistics_db.raw.customers(
+CREATE OR REPLACE TABLE logistics.raw.customers(
     CUSTOMER_ID INT,
     FIRST_NAME VARCHAR(50),
     LAST_NAME VARCHAR(50),
@@ -50,13 +50,13 @@ CREATE OR REPLACE TABLE logistics_db.raw.customers(
 );
 
 -- Copy data from azure blob storage into the customers table
-COPY INTO logistics_db.raw.customers
-    FROM @logistics_db.raw.logistics_container_stage
+COPY INTO logistics.raw.customers
+    FROM @logistics.raw.logistics_container_stage
     FILES = ('snow_customers.csv')
     FILE_FORMAT = (TYPE='CSV' FIELD_OPTIONALLY_ENCLOSED_BY = '"' SKIP_HEADER = 1);
 
 -- Create drivers table
-CREATE OR REPLACE TABLE logistics_db.raw.drivers(
+CREATE OR REPLACE TABLE logistics.raw.drivers(
     DRIVER_ID INT,
     FIRST_NAME VARCHAR,
     LAST_NAME VARCHAR,
@@ -68,13 +68,13 @@ CREATE OR REPLACE TABLE logistics_db.raw.drivers(
 );
 
 -- Copy data from azure blob storage into the drivers table
-COPY INTO logistics_db.raw.drivers
-    FROM @logistics_db.raw.logistics_container_stage
+COPY INTO logistics.raw.drivers
+    FROM @logistics.raw.logistics_container_stage
     FILES = ('snow_drivers.csv')
     FILE_FORMAT = (TYPE='CSV' FIELD_OPTIONALLY_ENCLOSED_BY = '"' SKIP_HEADER = 1);
 
 -- Create locations table
-CREATE OR REPLACE TABLE logistics_db.raw.locations(
+CREATE OR REPLACE TABLE logistics.raw.locations(
     LOCATION_ID INT,
     CITY VARCHAR,
     STATE VARCHAR,
@@ -85,13 +85,13 @@ CREATE OR REPLACE TABLE logistics_db.raw.locations(
 );
 
 -- Copy data from azure blob storage into the locations table
-COPY INTO logistics_db.raw.locations
-    FROM @logistics_db.raw.logistics_container_stage
+COPY INTO logistics.raw.locations
+    FROM @logistics.raw.logistics_container_stage
     FILES = ('snow_locations.csv')
     FILE_FORMAT = (TYPE='CSV' FIELD_OPTIONALLY_ENCLOSED_BY = '"' SKIP_HEADER = 1);
 
 -- Create payments table
-CREATE OR REPLACE TABLE logistics_db.raw.payments(
+CREATE OR REPLACE TABLE logistics.raw.payments(
     PAYMENT_ID INT,
     TRIP_ID INT,
     CUSTOMER_ID INT,
@@ -103,13 +103,13 @@ CREATE OR REPLACE TABLE logistics_db.raw.payments(
 );
 
 -- Copy data from azure blob storage into the payments table
-COPY INTO logistics_db.raw.payments
-    FROM @logistics_db.raw.logistics_container_stage
+COPY INTO logistics.raw.payments
+    FROM @logistics.raw.logistics_container_stage
     FILES = ('snow_payments.csv')
     FILE_FORMAT = (TYPE='CSV' FIELD_OPTIONALLY_ENCLOSED_BY = '"' SKIP_HEADER = 1);
 
 -- Create trips table
-CREATE OR REPLACE TABLE logistics_db.raw.trips(
+CREATE OR REPLACE TABLE logistics.raw.trips(
     TRIP_ID INT,
     DRIVER_ID INT,
     CUSTOMER_ID INT,
@@ -126,13 +126,13 @@ CREATE OR REPLACE TABLE logistics_db.raw.trips(
 );
 
 -- Copy data from azure blob storage into the trips table
-COPY INTO logistics_db.raw.trips
-    FROM @logistics_db.raw.logistics_container_stage
+COPY INTO logistics.raw.trips
+    FROM @logistics.raw.logistics_container_stage
     FILES = ('snow_trips.csv')
     FILE_FORMAT = (TYPE='CSV' FIELD_OPTIONALLY_ENCLOSED_BY = '"' SKIP_HEADER = 1);
 
 -- Create vehicles table
-CREATE OR REPLACE TABLE logistics_db.raw.vehicles(
+CREATE OR REPLACE TABLE logistics.raw.vehicles(
     VEHICLE_ID INT,
     LICENSE_PLATE VARCHAR,
     MODEL VARCHAR,
@@ -143,9 +143,9 @@ CREATE OR REPLACE TABLE logistics_db.raw.vehicles(
 );
 
 -- Copy data from azure blob storage into the vehicles table
-COPY INTO logistics_db.raw.vehicles
-    FROM @logistics_db.raw.logistics_container_stage
+COPY INTO logistics.raw.vehicles
+    FROM @logistics.raw.logistics_container_stage
     FILES = ('snow_vehicles.csv')
     FILE_FORMAT = (TYPE='CSV' FIELD_OPTIONALLY_ENCLOSED_BY = '"' SKIP_HEADER = 1);
 
-select * from logistics_db.raw.vehicles
+select * from logistics.raw.vehicles
