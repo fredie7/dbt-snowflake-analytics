@@ -3,7 +3,7 @@ SELECT
     dim_customers.customer_id,
     dim_customers.customer_name,
     COUNT(fact_trips.trip_id) total_trips,
-    ROUND(SUM(fact_payments.amount),2) AS total_revenue,
+    SUM(fact_payments.amount) AS total_revenue,
     ROUND(SUM(fact_payments.amount) / NULLIF(COUNT(fact_trips.trip_id),0),2) AS avg_order_value
 FROM
     {{ source("dev_gold", "gold_fact_trips") }} fact_trips

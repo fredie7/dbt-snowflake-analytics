@@ -1,4 +1,4 @@
-{# Find the frequency of customer request over the past 30 days #}
+-- Find the frequency of customer request over the past 30 days
 WITH recent_trips AS (
     SELECT
         customer_id,

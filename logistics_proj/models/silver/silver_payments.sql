@@ -22,7 +22,7 @@ unique_payments AS (
         customer_id,
         payment_method,
         payment_status,
-        amount,
+        ROUND(amount, 2) AS amount,
         transaction_time,
         last_updated_timestamp
     FROM

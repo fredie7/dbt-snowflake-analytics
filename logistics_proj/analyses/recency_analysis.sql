@@ -1,4 +1,4 @@
-{# FInd the timeframe of the last trip/order for each customer #}
+-- Find the timeframe of the last trip for each customer
 
 WITH last_trip AS (
     SELECT
