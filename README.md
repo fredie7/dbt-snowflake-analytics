@@ -15,7 +15,7 @@ To begin with, the data governance paragym adopted in this project considerd mat
 
 Next, the data moves to the Silver layer, where it undergoes cleaning, transformation, and standardization. This process followed best practices for scalability, query performance, and readability, preparing the data for analytics.
 
-For entities such as customers and trips, the pipeline implements slowly changing dimensions using snapshots to track historical change.
+For the customer entities, the pipeline implements the slowly changing dimensions - Type 2 using snapshots to track historical change.
 
 The sources.yml file defines the structure and metadata of the remote Snowflake tables used by DBT. It is used to track data lineage in terms of the interdependency beween entities the data model, hence improving documentation
 
