@@ -2,7 +2,7 @@
 
 This project implements a structured, multi-layered analytics pipeline following the Medallion Architecture, with secure data persistence in Snowflake and data transformation and testing using DBT.
 
-#### PROJECT ARCHITECTURE
+#### PROJECT ELT ARCHITECTURE
 <div align="center">
   <img src="https://github.com/fredie7/dbt-snowflake-analytics/blob/main/logistics_proj/images/snow.png?raw=true" />
   <br>
