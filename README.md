@@ -4,7 +4,7 @@ This project implements a structured, multi-layered analytics pipeline following
 
 #### PROJECT ELT ARCHITECTURE
 <div align="center">
-  <img src="https://github.com/fredie7/dbt-snowflake-analytics/blob/main/logistics_proj/images/snow.png?raw=true" />
+  <img src="https://github.com/fredie7/dbt-snowflake-analytics/blob/main/logistics_proj/images/snowflake%20analysis.png?raw=true" />
   <br>
    <sub><b></b> </sub>
 </div>
