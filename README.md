@@ -11,7 +11,7 @@ This project implements a structured, multi-layered analytics pipeline following
 
 The pipeline begins with establishing a connecton between Azure datalakke storage where the data is stored, and snowflake which includes factoring access control between both end points. This raft of data include those of a classic logistics company like: customers, drivers, locations, payments, trips, and vehicles data. This data is first staged in Snowflake storage and then ingested into the Bronze layer, which serves as the foundational layer for unprocessed data.tabe and table respectively.
 
-To begin with, the data governance paragym adopted in this project considerd materializing materializing the bronze layer as a view to preserve the storage raw layer. The silver had to be materialized as a table to avoid recomputation which saves compute cost, and also persist data quality upon transformation. The gold layer accounted for a materialized table for fast querying.
+To begin with, the data governance paradigm adopted in this project considerd materializing materializing the bronze layer as a view to preserve the storage raw layer. The silver had to be materialized as a table to avoid recomputation which saves compute cost, and also persist data quality upon transformation. The gold layer accounted for a materialized table for fast querying.
 
 Next, the data moves to the Silver layer, where it undergoes cleaning, transformation, and standardization. This process followed best practices for scalability, query performance, and readability, preparing the data for analytics.
 
