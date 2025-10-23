@@ -1,4 +1,4 @@
--- Remove duplicates and nulls from a table
+-- Remove duplicates and nulls from table
 {% macro remove_duplicates_and_nulls(table_name, id_column, not_null_columns) %}
     SELECT *
     FROM {{ table_name }}
