@@ -26,3 +26,66 @@ models:
       - name: last_update_timestamp
           - not_null    
         description: last updated timestamp of customers
+  - name: silver_drivers
+    description: Refined table for drivers
+    columns:
+      - name: driver_id
+        description: Primary key of the drivers
+        tests:
+          - unique
+          - not_null
+      - name: driver_name
+        description: Fullname of the drivers
+        tests:
+          - not_null
+      - name: phone_number
+        description: phone_number of the drivers
+        tests:
+          - not_null
+      - name: vehicle_id
+        description: vehicle id of the drivers
+        tests:
+          - not_null
+      - name: driver_rating
+        description: driver rating of the drivers
+        tests:
+          - not_null
+      - name: city
+        description: city of the drivers
+        tests:
+          - not_null
+      
+  - name: silver_locations
+    description: Refined table for locations
+    columns:
+      - name: location_id
+        description: Primary key of the locations
+        tests:
+          - unique
+          - not_null
+  - name: silver_payments
+    description: Refined table for payments
+    columns:
+      - name: payment_id
+        description: Primary key of the payments
+        tests:
+          - unique
+          - not_null
+  - name: silver_trips
+    description: Refined table for trips
+    columns:
+      - name: trip_id
+        description: Primary key of the trips
+        tests:
+          - unique
+          - not_null
+      
+  - name: silver_vehicles
+    description: Refined table for vehicles
+    columns:
+      - name: vehicle_id
+        description: Primary key of the vehicles
+        tests:
+          - unique
+          - not_null
+      

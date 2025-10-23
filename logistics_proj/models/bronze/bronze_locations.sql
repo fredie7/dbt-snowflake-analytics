@@ -1,4 +1,4 @@
-{# Populate the locations bronze layer #}
+-- Populate the locations bronze layer
 
 WITH locations AS (
     SELECT * FROM LOGISTICS.RAW.LOCATIONS

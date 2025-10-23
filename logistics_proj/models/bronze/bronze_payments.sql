@@ -1,4 +1,4 @@
-{# Populate the payments bronze layer #}
+-- Populate the payments bronze layer
 WITH payments AS (
     SELECT * FROM LOGISTICS.RAW.PAYMENTS
 )
